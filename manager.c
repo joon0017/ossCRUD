@@ -39,13 +39,22 @@ void saveData(Product p[], int count){
 	FILE* fp;
 
 	//중량 가격 제품명
-	fp= fopen("product.txt","wt");
-	
-	
+	fp= fopen("product.txt","wb");
+	for(int i=0;i<count;i++){
+		fputs("\n",fp);
+		fputs(p[i].name,fp);
+		fputs("\n",fp);
+		char temp[10];
+		sprintf(temp, "%d", p[i].weight);
+		fputs(temp,fp);
+		fputs("\n",fp);
+		char tempp[10];
+		sprintf(tempp,"%d",p[i].price);
+		fputs(tempp,fp);
+	}
 	fclose(fp);
 	printf("저장됨!\n");
 }
-
 
 //파일에서 데이터 불러오는 함수
 int loadData(Product *p){
